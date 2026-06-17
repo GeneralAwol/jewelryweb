@@ -30,7 +30,7 @@ window.PRODUCTS = {
       price: '£450',
       material: 'White Gold',
       stone: 'Diamond',
-      image: 'https://images.unsplash.com/photo-1653785481935-9bdf2184228e?w=600&h=600&fit=crop&q=80',
+      image: 'https://images.unsplash.com/photo-ceSCZzjTReg?w=900&h=1100&fit=crop&q=85',
       desc: 'A whisper-thin pavé band, set with F-colour round brilliants.'
     },
     {

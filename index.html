@@ -1,0 +1,1868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lumière Jewellers | Bespoke Fine Jewellery London</title>
+  <meta name="description" content="Lumière Jewellers — London's finest bespoke jewellery atelier. Handcrafted rings, necklaces, earrings and bespoke pieces. Visit us or book a private appointment."/>
+  <meta name="keywords" content="fine jewellery, bespoke jewellery, luxury rings, diamond necklaces, engagement rings, London jewellers"/>
+  <link rel="canonical" href="https://lumierejewellers.com/"/>
+  <meta property="og:title" content="Lumière Jewellers | Bespoke Fine Jewellery"/>
+  <meta property="og:description" content="Handcrafted fine jewellery from London's premier atelier."/>
+  <meta property="og:type" content="website"/>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"JewelryStore","name":"Lumière Jewellers","url":"https://lumierejewellers.com","telephone":"+44-000-000-0000","address":{"@type":"PostalAddress","streetAddress":"1 Jewellers Row","addressLocality":"London","postalCode":"EC1N 0XX","addressCountry":"GB"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"10:00","closes":"18:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"11:00","closes":"16:00"}]}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <script src="products.js"></script>
+<style>
+/* ═══════════════════════════════════════
+   RESET & ROOT
+═══════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#080808;--dark:#111;--dark2:#161616;
+  --gold:#b8973a;--gold2:#c9a84c;--gold3:#e8cc80;
+  --white:#fff;--off:#f4f1ec;--grey:#888;--grey2:#555;
+  --nav-h:68px;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Montserrat',sans-serif;
+  --ease:cubic-bezier(.25,.46,.45,.94);
+  --ease2:cubic-bezier(.76,0,.24,1);
+}
+html{
+  scroll-snap-type:y mandatory;
+  overflow-y:scroll;
+  scroll-behavior:smooth;
+  height:100%;
+}
+body{
+  font-family:var(--sans);
+  background:var(--black);
+  color:var(--white);
+  overflow-x:hidden;
+  min-height:100%;
+}
+a{text-decoration:none;color:inherit}
+img{display:block;width:100%;height:100%;object-fit:cover}
+button{border:none;background:none;font-family:inherit;cursor:pointer}
+
+/* ═══════════════════════════════════════
+   SCROLL SNAP SECTIONS
+═══════════════════════════════════════ */
+.snap{
+  scroll-snap-align:start;
+  scroll-snap-stop:always;
+  height:100vh;
+  overflow:hidden;
+  position:relative;
+}
+footer{scroll-snap-align:start}
+
+/* ═══════════════════════════════════════
+   LOADER
+═══════════════════════════════════════ */
+#loader{
+  position:fixed;inset:0;z-index:9999;
+  background:var(--black);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  transition:opacity .7s var(--ease),visibility .7s;
+}
+#loader.out{opacity:0;visibility:hidden;pointer-events:none}
+.ld-logo{
+  font-family:var(--serif);font-size:2.8rem;letter-spacing:.08em;
+  color:var(--white);margin-bottom:2.5rem;
+  animation:fadeUp .7s var(--ease) both;
+}
+.ld-logo span{color:var(--gold2)}
+.ld-bar{width:200px;height:1px;background:rgba(255,255,255,.1);overflow:hidden;position:relative}
+.ld-fill{
+  height:100%;background:linear-gradient(90deg,var(--gold),var(--gold3));
+  width:0;animation:ldFill 1.8s var(--ease) .3s forwards;
+}
+.ld-txt{
+  font-size:.6rem;letter-spacing:.35em;color:var(--grey);
+  margin-top:.9rem;animation:fadeUp .7s .4s var(--ease) both;
+}
+@keyframes ldFill{to{width:100%}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+/* ═══════════════════════════════════════
+   NAVIGATION (single row)
+═══════════════════════════════════════ */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  height:var(--nav-h);
+  display:grid;grid-template-columns:auto 1fr auto;
+  align-items:center;
+  padding:0 3rem;gap:2rem;
+  background:rgba(8,8,8,.85);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(255,255,255,.06);
+  transition:background .4s,border-color .4s;
+}
+#nav.solid{
+  background:rgba(8,8,8,.97);
+  border-bottom-color:rgba(184,151,58,.12);
+}
+.nav-logo{
+  font-family:var(--serif);font-size:1.7rem;letter-spacing:.06em;
+  color:var(--white);white-space:nowrap;transition:color .3s;
+}
+.nav-logo span{color:var(--gold2)}
+.nav-logo:hover{color:var(--gold2)}
+
+/* Center nav links */
+.nav-links{
+  display:flex;align-items:stretch;gap:0;list-style:none;
+  height:var(--nav-h);
+}
+.nl-item{position:relative;display:flex;align-items:center}
+.nl-btn{
+  display:flex;align-items:center;gap:.35rem;
+  font-size:.68rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(255,255,255,.65);padding:0 1.2rem;height:100%;
+  transition:color .3s;border-bottom:2px solid transparent;
+  white-space:nowrap;
+}
+.nl-item:hover .nl-btn,.nl-btn.active{color:var(--white);border-bottom-color:var(--gold2)}
+.nl-chevron{
+  width:9px;height:9px;stroke:currentColor;fill:none;stroke-width:2;
+  transition:transform .3s;flex-shrink:0;
+}
+.nl-item:hover .nl-chevron{transform:rotate(180deg)}
+
+/* Mega dropdown — position:fixed so it never clips off-screen */
+.mega{
+  position:fixed;top:var(--nav-h);left:0; /* left overridden by JS on hover */
+  transform:translateY(-6px);
+  background:rgba(10,10,10,.98);backdrop-filter:blur(24px);
+  border:1px solid rgba(255,255,255,.07);
+  border-top:2px solid var(--gold2);
+  padding:2rem 2.5rem;
+  display:grid;gap:2rem;
+  min-width:680px;
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .3s var(--ease),transform .3s var(--ease),visibility .3s;
+  z-index:201;
+}
+.mega-jewellery{grid-template-columns:1fr 1fr 1fr 220px}
+.mega-bespoke{grid-template-columns:1fr 1fr 200px}
+.nl-item:hover .mega{
+  opacity:1;visibility:visible;pointer-events:all;
+  transform:translateY(0);
+}
+.mega-col h4{
+  font-size:.58rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--gold2);margin-bottom:1rem;padding-bottom:.5rem;
+  border-bottom:1px solid rgba(255,255,255,.07);
+}
+.mega-col ul{list-style:none}
+.mega-col li{margin-bottom:.45rem}
+.mega-col a{
+  font-size:.8rem;color:rgba(255,255,255,.55);
+  transition:color .25s,padding-left .25s;display:block;
+}
+.mega-col a:hover{color:var(--white);padding-left:.4rem}
+.mega-img{position:relative;overflow:hidden;border-radius:1px;min-height:150px}
+.mega-img img{transition:transform .5s var(--ease)}
+.mega-img:hover img{transform:scale(1.04)}
+.mega-img-label{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.72) 0%,transparent 55%);
+  display:flex;flex-direction:column;justify-content:flex-end;padding:1rem;
+  pointer-events:none;
+}
+.mega-img-label small{font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold2);margin-bottom:.2rem}
+.mega-img-label strong{font-family:var(--serif);font-size:1rem;color:var(--white)}
+
+/* Right nav icons */
+.nav-right{display:flex;align-items:center;gap:1rem}
+.nav-icon{
+  color:rgba(255,255,255,.6);padding:6px;display:flex;
+  align-items:center;transition:color .3s;
+}
+.nav-icon:hover{color:var(--white)}
+.nav-icon svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.6}
+.nav-store{
+  display:flex;align-items:center;gap:.5rem;
+  font-size:.62rem;letter-spacing:.1em;color:rgba(255,255,255,.45);
+  white-space:nowrap;
+}
+.nav-store strong{color:var(--gold2);font-weight:500}
+
+/* Hamburger */
+.hamburger{
+  display:none;flex-direction:column;gap:5px;padding:5px;
+  cursor:pointer;
+}
+.hamburger span{
+  display:block;width:22px;height:1px;background:var(--white);
+  transition:.35s var(--ease);
+}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
+
+/* ═══════════════════════════════════════
+   MOBILE FULL-SCREEN NAV
+═══════════════════════════════════════ */
+.mob-nav{
+  position:fixed;inset:0;z-index:190;
+  background:rgba(8,8,8,.98);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;
+  clip-path:inset(0 0 100% 0);
+  transition:clip-path .65s var(--ease2);
+}
+.mob-nav.open{clip-path:inset(0 0 0% 0)}
+.mob-nav a{
+  font-family:var(--serif);font-size:clamp(2rem,7vw,3.2rem);
+  color:var(--white);letter-spacing:.04em;
+  opacity:0;transform:translateY(16px);
+  transition:opacity .4s,transform .4s,color .3s;
+}
+.mob-nav.open a{opacity:1;transform:none}
+.mob-nav.open a:nth-child(1){transition-delay:.2s}
+.mob-nav.open a:nth-child(2){transition-delay:.3s}
+.mob-nav.open a:nth-child(3){transition-delay:.4s}
+.mob-nav.open a:nth-child(4){transition-delay:.5s}
+.mob-nav.open a:nth-child(5){transition-delay:.6s}
+.mob-nav a:hover{color:var(--gold2)}
+.mob-nav-footer{
+  position:absolute;bottom:3rem;
+  font-size:.65rem;letter-spacing:.2em;color:var(--grey);text-transform:uppercase;
+}
+
+/* ═══════════════════════════════════════
+   DETAIL OVERLAY PAGES
+═══════════════════════════════════════ */
+.detail{
+  position:fixed;inset:0;z-index:300;
+  background:var(--black);
+  transform:translateX(100%);
+  transition:transform .7s var(--ease2);
+  overflow-y:auto;
+  overscroll-behavior:contain;
+}
+.detail.open{transform:translateX(0)}
+.detail-nav{
+  position:sticky;top:0;z-index:10;
+  height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;
+  padding:0 3rem;
+  background:rgba(8,8,8,.9);backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.detail-back{
+  display:flex;align-items:center;gap:.6rem;
+  font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(255,255,255,.6);cursor:pointer;transition:color .3s;
+}
+.detail-back:hover{color:var(--white)}
+.detail-back svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8}
+.detail-close{
+  width:36px;height:36px;border:1px solid rgba(255,255,255,.15);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:border-color .3s,color .3s;color:rgba(255,255,255,.6);
+}
+.detail-close:hover{border-color:var(--gold2);color:var(--white)}
+.detail-close svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+.detail-hero{
+  height:40vh;position:relative;overflow:hidden;
+}
+.detail-hero img{transition:transform .8s var(--ease)}
+.detail-hero:hover img{transform:scale(1.03)}
+.detail-hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(8,8,8,1) 0%,rgba(8,8,8,.3) 40%,transparent 70%);
+}
+.detail-hero-text{
+  position:absolute;bottom:3rem;left:3rem;right:3rem;z-index:2;
+}
+.detail-hero-eyebrow{
+  font-size:.62rem;font-weight:600;letter-spacing:.35em;text-transform:uppercase;
+  color:var(--gold2);margin-bottom:.7rem;
+  display:flex;align-items:center;gap:.6rem;
+}
+.detail-hero-eyebrow::before{content:'';width:20px;height:1px;background:var(--gold2)}
+.detail-hero-title{
+  font-family:var(--serif);font-size:clamp(2.5rem,5vw,4rem);
+  font-weight:300;color:var(--white);line-height:1;
+}
+.detail-body{padding:3rem 3rem 5rem}
+.detail-desc{
+  font-size:.9rem;color:var(--grey);line-height:1.9;max-width:680px;
+  margin-bottom:3rem;font-weight:300;
+}
+.detail-gallery{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:6px;
+}
+.detail-gallery-item{
+  aspect-ratio:3/4;overflow:hidden;position:relative;cursor:pointer;
+}
+.detail-gallery-item img{transition:transform .6s var(--ease)}
+.detail-gallery-item:hover img{transform:scale(1.05)}
+.detail-cta-row{
+  display:flex;align-items:center;gap:1rem;margin-top:3rem;flex-wrap:wrap;
+}
+
+/* ═══════════════════════════════════════
+   HERO SECTION (snap)
+═══════════════════════════════════════ */
+#hero{padding-top:0}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.1s var(--ease)}
+.slide.active{opacity:1;z-index:1}
+.slide-img{
+  position:absolute;inset:0;
+  transform:scale(1.06);transition:transform 7s linear;
+}
+.slide.active .slide-img{transform:scale(1)}
+.slide-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(130deg,rgba(15,10,5,.72) 0%,rgba(15,10,5,.18) 60%,rgba(15,10,5,.42) 100%);
+  z-index:1;
+}
+.slide-content{
+  position:absolute;z-index:2;
+  bottom:13%;left:6%;max-width:600px;
+}
+.slide-eye{
+  font-size:.62rem;font-weight:600;letter-spacing:.38em;text-transform:uppercase;
+  color:var(--gold2);margin-bottom:1rem;
+  display:flex;align-items:center;gap:.7rem;
+  opacity:0;transform:translateY(18px);
+  transition:opacity .65s .2s,transform .65s .2s;
+}
+.slide.active .slide-eye{opacity:1;transform:none}
+.slide-eye::before{content:'';width:24px;height:1px;background:var(--gold2)}
+.slide-title{
+  font-family:var(--serif);font-size:clamp(2.8rem,6.5vw,5.5rem);
+  font-weight:300;line-height:1;color:var(--white);margin-bottom:1.2rem;
+  opacity:0;transform:translateY(28px);
+  transition:opacity .75s .4s,transform .75s .4s;
+}
+.slide.active .slide-title{opacity:1;transform:none}
+.slide-title em{font-style:italic;color:var(--gold3)}
+.slide-desc{
+  font-size:.85rem;color:rgba(255,255,255,.68);line-height:1.8;
+  max-width:400px;margin-bottom:2rem;font-weight:300;
+  opacity:0;transform:translateY(16px);
+  transition:opacity .65s .6s,transform .65s .6s;
+}
+.slide.active .slide-desc{opacity:1;transform:none}
+.slide-btn{
+  display:inline-flex;align-items:center;gap:.7rem;
+  font-size:.65rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--black);background:var(--white);padding:.85rem 1.9rem;
+  transition:background .3s,color .3s,transform .3s;
+  opacity:0;transform:translateY(14px);
+  transition:opacity .65s .8s,transform .65s .8s,background .3s,color .3s;
+}
+.slide.active .slide-btn{opacity:1;transform:none}
+.slide-btn:hover{background:var(--gold2);transform:translateY(-1px)}
+.slide-btn svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;transition:transform .3s}
+.slide-btn:hover svg{transform:translateX(3px)}
+
+/* Slider controls */
+.hero-controls{
+  position:absolute;bottom:8%;right:5%;z-index:10;
+  display:flex;align-items:center;gap:.8rem;
+}
+.hero-dot{
+  width:22px;height:2px;background:rgba(255,255,255,.3);
+  cursor:pointer;transition:background .4s,width .4s;
+}
+.hero-dot.active{background:var(--gold2);width:38px}
+.hero-arr{
+  width:42px;height:42px;border:1px solid rgba(255,255,255,.22);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--white);cursor:pointer;
+  transition:border-color .3s,background .3s;
+}
+.hero-arr:hover{border-color:var(--gold2);background:rgba(201,168,76,.1)}
+.hero-arr svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.6}
+
+/* Side counter */
+.hero-counter{
+  position:absolute;right:2.5%;top:50%;transform:translateY(-50%);
+  z-index:10;display:flex;flex-direction:column;align-items:center;gap:.6rem;
+}
+.hc-num{
+  font-family:var(--serif);font-size:1.8rem;font-weight:300;
+  color:var(--white);writing-mode:vertical-rl;
+}
+.hc-line{width:1px;height:44px;background:rgba(255,255,255,.15)}
+.hc-total{font-size:.6rem;letter-spacing:.2em;color:rgba(255,255,255,.3);writing-mode:vertical-rl}
+
+/* Marquee banner inside hero (bottom strip) */
+.hero-strip{
+  position:absolute;bottom:0;left:0;right:0;z-index:5;
+  background:rgba(184,151,58,.9);backdrop-filter:blur(8px);
+  height:36px;overflow:hidden;display:flex;align-items:center;
+}
+.hero-strip-track{
+  display:flex;animation:marquee 20s linear infinite;white-space:nowrap;
+}
+.hero-strip-item{
+  font-size:.58rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--black);padding:0 3rem;white-space:nowrap;
+  display:flex;align-items:center;gap:1.2rem;
+}
+.hero-strip-item::before{content:'✦'}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ═══════════════════════════════════════
+   CATEGORIES SECTION (snap, fits viewport)
+═══════════════════════════════════════ */
+#categories{
+  display:flex;flex-direction:column;
+  padding-top:var(--nav-h);
+  background:var(--black);
+}
+.cat-header{
+  flex-shrink:0;
+  display:flex;align-items:baseline;justify-content:space-between;
+  padding:1.5rem 3rem 1rem;
+}
+.cat-header-left{display:flex;align-items:baseline;gap:1.5rem}
+.cat-eyebrow{
+  font-size:.58rem;font-weight:700;letter-spacing:.35em;text-transform:uppercase;
+  color:var(--gold2);display:flex;align-items:center;gap:.6rem;
+}
+.cat-eyebrow::before{content:'';width:16px;height:1px;background:var(--gold2)}
+.cat-title{
+  font-family:var(--serif);font-size:clamp(1.4rem,2.5vw,2rem);
+  font-weight:300;color:var(--white);
+}
+.cat-sub{font-size:.7rem;color:var(--grey);letter-spacing:.05em}
+
+/* Category grid: 3 cols, 2 rows, fills remaining height */
+.cat-grid{
+  flex:1;min-height:0;
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  grid-template-rows:1fr 1fr;
+  gap:18px;
+  padding:0 1rem 1rem;
+}
+.cat-card{
+  position:relative;overflow:hidden;cursor:pointer;
+  background:var(--dark);
+  border-radius:10px;
+}
+.cat-card.tall{grid-row:span 2}
+.cat-img{
+  position:absolute;inset:0;
+  transition:transform .75s var(--ease);
+}
+.cat-card:hover .cat-img{transform:scale(1.06)}
+.cat-ov{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.05) 55%,transparent 100%);
+  transition:background .4s;z-index:1;
+}
+.cat-card:hover .cat-ov{background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.2) 60%,rgba(0,0,0,.05) 100%)}
+.cat-content{
+  position:absolute;bottom:0;left:0;right:0;z-index:2;
+  padding:1.4rem 1.3rem;
+}
+.cat-clabel{
+  font-size:.55rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--gold2);margin-bottom:.3rem;
+  opacity:0;transform:translateY(6px);
+  transition:opacity .3s,transform .3s;
+}
+.cat-card:hover .cat-clabel{opacity:1;transform:none}
+.cat-ctitle{
+  font-family:var(--serif);font-size:1.5rem;
+  color:var(--white);line-height:1.1;
+}
+.cat-clink{
+  display:inline-flex;align-items:center;gap:.35rem;
+  font-size:.58rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold2);margin-top:.5rem;
+  opacity:0;transform:translateX(-6px);
+  transition:opacity .3s .05s,transform .3s .05s;
+}
+.cat-card:hover .cat-clink{opacity:1;transform:none}
+.cat-clink svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2;transition:transform .3s}
+.cat-card:hover .cat-clink svg{transform:translateX(3px)}
+
+/* ═══════════════════════════════════════
+   GOLD RIBBON (standalone, no snap)
+═══════════════════════════════════════ */
+.ribbon{
+  background:var(--gold2);height:40px;overflow:hidden;display:flex;align-items:center;
+  flex-shrink:0;
+}
+.ribbon-track{
+  display:flex;animation:marquee 16s linear infinite;white-space:nowrap;
+}
+.ribbon-item{
+  font-family:var(--serif);font-size:1rem;font-style:italic;
+  color:var(--black);padding:0 2.5rem;white-space:nowrap;
+  display:flex;align-items:center;gap:1rem;
+}
+.ribbon-sep{font-style:normal;font-size:.5rem}
+
+/* ═══════════════════════════════════════
+   ABOUT SECTION (snap)
+═══════════════════════════════════════ */
+#about{
+  display:grid;grid-template-columns:1fr 1fr;
+  background:var(--dark2);
+  padding:var(--nav-h) 1rem 0;gap:1rem;
+}
+.about-img{position:relative;overflow:hidden;border-radius:10px}
+.about-img img{transition:transform .7s var(--ease)}
+.about-img:hover img{transform:scale(1.03)}
+.about-img-ov{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(0,0,0,.35) 0%,transparent 60%);
+  z-index:1;
+}
+.about-stat-chip{
+  position:absolute;bottom:2.5rem;left:2.5rem;z-index:2;
+  background:rgba(8,8,8,.88);backdrop-filter:blur(14px);
+  border:1px solid rgba(184,151,58,.2);
+  padding:1.2rem 1.8rem;display:flex;gap:2.5rem;
+}
+.ast-n{
+  font-family:var(--serif);font-size:2.2rem;font-weight:300;
+  color:var(--gold2);line-height:1;display:block;
+}
+.ast-l{
+  font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--grey);margin-top:.25rem;display:block;
+}
+.about-text{
+  display:flex;flex-direction:column;justify-content:flex-start;
+  padding:2.5rem 3.5rem;overflow-y:auto;
+}
+.about-text blockquote{
+  border-left:2px solid var(--gold2);padding-left:1.4rem;
+  font-family:var(--serif);font-size:1.2rem;font-style:italic;
+  color:rgba(255,255,255,.82);line-height:1.5;margin:1rem 0;
+}
+.about-text p{
+  font-size:.84rem;color:var(--grey);line-height:1.75;margin-bottom:.6rem;font-weight:300;
+}
+.vals{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem}
+.val{border-top:1px solid rgba(255,255,255,.07);padding-top:.9rem}
+.val-n{
+  font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold2);margin-bottom:.3rem;display:block;
+}
+.val-d{font-size:.75rem;color:var(--grey);line-height:1.6}
+
+/* ═══════════════════════════════════════
+   SHOWCASE (snap) — 3 featured pieces
+═══════════════════════════════════════ */
+#showcase{
+  display:flex;flex-direction:column;
+  background:var(--black);padding-top:var(--nav-h);
+}
+.sc-header{
+  flex-shrink:0;padding:1.5rem 3rem 1rem;
+  display:flex;align-items:baseline;justify-content:space-between;
+}
+.sc-grid{
+  flex:1;min-height:0;
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:18px;padding:0 1rem 2.5rem;
+}
+.sc-card{
+  position:relative;overflow:hidden;cursor:pointer;background:var(--dark);
+  border-radius:10px;
+}
+.sc-card img{
+  position:absolute;inset:0;
+  transition:transform .7s var(--ease);
+}
+.sc-card:hover img{transform:scale(1.06)}
+.sc-card::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.85) 0%,transparent 55%);
+  transition:background .4s;z-index:1;
+}
+.sc-card:hover::after{background:linear-gradient(to top,rgba(0,0,0,.9) 0%,rgba(0,0,0,.15) 60%,transparent 100%)}
+.sc-info{
+  position:absolute;bottom:0;left:0;right:0;z-index:2;
+  padding:1.5rem;
+}
+.sc-tag{
+  display:inline-block;font-size:.52rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;
+  border:1px solid rgba(184,151,58,.45);color:var(--gold2);
+  padding:.2rem .6rem;margin-bottom:.5rem;
+  opacity:0;transition:opacity .35s;
+}
+.sc-card:hover .sc-tag{opacity:1}
+.sc-name{font-family:var(--serif);font-size:1.3rem;color:var(--white);line-height:1.2}
+.sc-enq{
+  display:flex;align-items:center;gap:.35rem;
+  font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold2);margin-top:.5rem;
+  opacity:0;transform:translateY(5px);
+  transition:opacity .3s .05s,transform .3s .05s;
+}
+.sc-card:hover .sc-enq{opacity:1;transform:none}
+.sc-enq svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2}
+
+/* ═══════════════════════════════════════
+   VISIT SECTION (snap)
+═══════════════════════════════════════ */
+#visit{
+  display:grid;grid-template-columns:1fr 1fr;
+  background:var(--dark2);
+  padding:var(--nav-h) 1rem 0;gap:1rem;
+}
+.visit-img{position:relative;overflow:hidden;border-radius:10px}
+.visit-img img{transition:transform .7s var(--ease)}
+.visit-img:hover img{transform:scale(1.03)}
+.visit-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to right,rgba(8,8,8,.4) 0%,transparent 60%);
+}
+.visit-content{
+  display:flex;flex-direction:column;justify-content:flex-start;
+  padding:2rem 3rem;overflow-y:auto;
+}
+.hours-tbl{width:100%;border-collapse:collapse;margin:.8rem 0}
+.hours-tbl td{padding:.4rem 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.8rem}
+.hours-tbl td:first-child{color:var(--grey)}
+.hours-tbl td:last-child{text-align:right;color:var(--white)}
+.hours-tbl .cl td{opacity:.3}
+.c-rows{display:flex;flex-direction:column;gap:.6rem;margin:.8rem 0}
+.c-row{display:flex;align-items:center;gap:.9rem;font-size:.8rem}
+.c-ico{
+  width:30px;height:30px;background:rgba(184,151,58,.08);
+  border:1px solid rgba(184,151,58,.18);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;color:var(--gold2);
+}
+.c-ico svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:1.6}
+.c-info small{font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:var(--grey);display:block;margin-bottom:.1rem}
+.c-info a,.c-info span{color:rgba(255,255,255,.75);font-size:.8rem;transition:color .3s}
+.c-info a:hover{color:var(--gold2)}
+
+/* ═══════════════════════════════════════
+   FOOTER (snap)
+═══════════════════════════════════════ */
+footer{
+  background:#050505;
+  border-top:1px solid rgba(184,151,58,.08);
+  padding:4rem 3rem 2.5rem;
+}
+.ft-grid{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;
+  padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.05);
+}
+.ft-brand .nav-logo{font-size:1.5rem;display:inline-block;margin-bottom:.9rem}
+.ft-brand p{font-size:.75rem;color:var(--grey);line-height:1.9;max-width:270px}
+.ft-social{display:flex;gap:.5rem;margin-top:1.3rem}
+.ft-social a{
+  width:30px;height:30px;border:1px solid rgba(255,255,255,.1);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--grey);transition:border-color .3s,color .3s;
+}
+.ft-social a:hover{border-color:var(--gold2);color:var(--gold2)}
+.ft-social svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:1.5}
+.ft-col h4{
+  font-size:.56rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--gold2);margin-bottom:1.1rem;
+}
+.ft-col ul{list-style:none}
+.ft-col li{margin-bottom:.5rem}
+.ft-col a{font-size:.75rem;color:var(--grey);transition:color .3s,padding-left .3s;display:block}
+.ft-col a:hover{color:var(--white);padding-left:.35rem}
+.ft-bottom{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-top:1.8rem;flex-wrap:wrap;gap:.8rem;
+}
+.ft-bottom p{font-size:.65rem;color:rgba(255,255,255,.18)}
+
+/* ═══════════════════════════════════════
+   BUTTONS
+═══════════════════════════════════════ */
+.btn{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  padding:.8rem 1.7rem;transition:.3s;cursor:pointer;
+}
+.btn svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;transition:transform .3s}
+.btn:hover svg{transform:translateX(3px)}
+.btn-gold{background:var(--gold2);color:var(--black)}
+.btn-gold:hover{background:var(--gold3)}
+.btn-wh{border:1px solid rgba(255,255,255,.25);color:var(--white)}
+.btn-wh:hover{border-color:var(--gold2);color:var(--gold2)}
+
+/* ═══════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════ */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .75s var(--ease),transform .75s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.rv-l{opacity:0;transform:translateX(-28px);transition:opacity .75s var(--ease),transform .75s var(--ease)}
+.rv-l.in{opacity:1;transform:none}
+.rv-r{opacity:0;transform:translateX(28px);transition:opacity .75s var(--ease),transform .75s var(--ease)}
+.rv-r.in{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE — TABLET
+═══════════════════════════════════════ */
+@media(max-width:1100px){
+  .nav-store{display:none}
+  .mega-jewellery{grid-template-columns:1fr 1fr 180px;min-width:520px}
+  .mega-bespoke{min-width:420px}
+  .ft-grid{grid-template-columns:1fr 1fr}
+  .vals{grid-template-columns:1fr 1fr}
+  #about{grid-template-columns:1fr}
+  .about-img{min-height:300px;max-height:40vh}
+  .about-text{padding:3rem}
+  #visit{grid-template-columns:1fr}
+  .visit-img{min-height:280px;max-height:35vh}
+  .visit-content{padding:2.5rem 3rem}
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE — MOBILE
+═══════════════════════════════════════ */
+@media(max-width:768px){
+  /* Disable scroll-snap on mobile for natural scroll */
+  html{scroll-snap-type:none}
+  .snap{height:auto;overflow:visible}
+  footer{scroll-snap-align:none}
+
+  :root{--nav-h:60px}
+
+  #nav{
+    grid-template-columns:auto 1fr;
+    padding:0 1.2rem;
+  }
+  .nav-links,.nav-store{display:none}
+  .nav-right .nav-icon:not(.hamburger){display:none}
+  .hamburger{display:flex}
+
+  /* Hero */
+  #hero{height:100svh;min-height:500px}
+  .slide-content{bottom:22%;left:5%;padding-right:5%}
+  .slide-title{font-size:2.4rem}
+  .hero-counter{display:none}
+  .hero-controls{bottom:12%;right:4%}
+
+  /* Categories */
+  #categories{height:auto;min-height:auto}
+  .cat-header{padding:1.2rem 1.2rem .6rem;flex-direction:column;gap:.4rem;align-items:flex-start}
+  .cat-grid{
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:repeat(3,220px);
+    height:auto;flex:none;padding:0 .5rem .5rem;gap:8px;
+  }
+  .cat-card.tall{grid-row:span 1}
+  .cat-ctitle{font-size:1.2rem}
+
+  /* About */
+  #about{grid-template-columns:1fr;height:auto;min-height:auto}
+  .about-img{min-height:50vw;max-height:none}
+  .about-text{padding:2.5rem 1.5rem}
+  .vals{grid-template-columns:1fr}
+  .about-stat-chip{bottom:1.5rem;left:1.5rem;padding:1rem 1.2rem;gap:1.5rem}
+
+  /* Showcase */
+  #showcase{height:auto}
+  .sc-header{padding:1.2rem 1.2rem .6rem}
+  .sc-grid{grid-template-columns:1fr;grid-auto-rows:260px;flex:none;height:auto}
+
+  /* Visit */
+  #visit{grid-template-columns:1fr;height:auto;min-height:auto}
+  .visit-img{min-height:50vw}
+  .visit-content{padding:2rem 1.5rem}
+
+  /* Footer */
+  footer{padding:3rem 1.5rem 2rem}
+  .ft-grid{grid-template-columns:1fr}
+  .ft-bottom{flex-direction:column;align-items:flex-start}
+
+  /* Detail overlay */
+  .detail-nav{padding:0 1.2rem}
+  .detail-body{padding:2rem 1.2rem 4rem}
+  .detail-gallery{grid-template-columns:1fr 1fr}
+  .detail-hero-text{bottom:2rem;left:1.5rem;right:1.5rem}
+}
+@media(max-width:480px){
+  .cat-grid{grid-template-columns:1fr;grid-auto-rows:200px}
+  .sc-grid{grid-auto-rows:220px}
+}
+
+/* ═══════════════════════════════════════
+   LIGHT THEME — Warm Cream Palette
+═══════════════════════════════════════ */
+body{background:#F7F5F1;color:#1C1C1C}
+/* Loader */
+#loader{background:#F7F5F1}
+.ld-logo{color:#1C1C1C}
+.ld-bar{background:rgba(28,28,28,.1)}
+/* Nav */
+#nav{background:rgba(247,245,241,.92);border-bottom-color:rgba(28,28,28,.08)}
+#nav.solid{background:rgba(247,245,241,.99);border-bottom-color:rgba(184,151,58,.15)}
+.nav-logo{color:#1C1C1C}
+.nl-btn{color:rgba(28,28,28,.45)}
+.nl-item:hover .nl-btn,.nl-btn.active{color:#1C1C1C;border-bottom-color:var(--gold2)}
+.mega{background:rgba(247,245,241,.98);border-color:rgba(28,28,28,.1)}
+.mega-col h4{border-bottom-color:rgba(28,28,28,.07)}
+.mega-col a{color:rgba(28,28,28,.5)}
+.mega-col a:hover{color:#1C1C1C;padding-left:.4rem}
+.mega-img-label strong{color:#F7F5F1}
+.nav-icon{color:rgba(28,28,28,.45)}
+.nav-icon:hover{color:#1C1C1C}
+.nav-store{color:rgba(28,28,28,.4)}
+.hamburger span{background:#1C1C1C}
+/* Sections */
+#categories,#showcase{background:#F7F5F1}
+#about{background:#F0EDE7}
+#visit{background:#F0EDE7}
+.cat-title{color:#1C1C1C}
+.cat-sub{color:#7A7A7A}
+/* About */
+.about-text blockquote{color:rgba(28,28,28,.78)}
+.about-text p{color:#6B6B6B}
+.val{border-top-color:rgba(28,28,28,.08)}
+.val-d{color:#6B6B6B}
+/* Visit */
+.hours-tbl td{border-bottom-color:rgba(28,28,28,.05)}
+.hours-tbl td:first-child{color:#7A7A7A}
+.hours-tbl td:last-child{color:#1C1C1C}
+.c-info a,.c-info span{color:rgba(28,28,28,.75)}
+/* Buttons */
+.btn-wh{border-color:rgba(28,28,28,.2);color:#1C1C1C}
+.btn-wh:hover{border-color:var(--gold2);color:var(--gold2)}
+/* Footer */
+footer{background:#EAE7DF;border-top-color:rgba(28,28,28,.08)}
+.ft-brand p,.ft-col a{color:#888}
+.ft-grid{border-bottom-color:rgba(28,28,28,.06)}
+.ft-col a:hover{color:#1C1C1C}
+.ft-social a{border-color:rgba(28,28,28,.12);color:#888}
+.ft-social a:hover{border-color:var(--gold2);color:var(--gold2)}
+.ft-bottom p{color:rgba(28,28,28,.3)}
+/* Detail overlay light shell */
+.detail{background:#F7F5F1}
+.detail-nav{background:rgba(247,245,241,.96);border-bottom-color:rgba(28,28,28,.08)}
+.detail-back{color:rgba(28,28,28,.5)}
+.detail-back:hover{color:#1C1C1C}
+.detail-close{border-color:rgba(28,28,28,.15);color:rgba(28,28,28,.5)}
+.detail-close:hover{border-color:var(--gold2);color:#1C1C1C}
+/* Hero overlay keeps dark gradient — title stays white */
+.detail-hero-title{color:#fff}
+
+/* ═══════════════════════════════════════
+   PRODUCT LISTING PAGE (.plp)
+═══════════════════════════════════════ */
+.plp{
+  display:grid;
+  grid-template-columns:230px 1fr;
+  gap:1.5rem;
+  padding:1.5rem 1rem 4rem;
+  background:#F7F5F1;
+}
+.plp-filters{
+  align-self:start;
+  position:sticky;
+  top:calc(var(--nav-h) + 1rem);
+  max-height:calc(100vh - var(--nav-h) - 2rem);
+  overflow-y:auto;
+  background:#fff;
+  border-radius:10px;
+  padding:1.4rem;
+  border:1px solid rgba(28,28,28,.07);
+}
+.plp-filter-head{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:1.1rem;padding-bottom:.8rem;
+  border-bottom:1px solid rgba(28,28,28,.07);
+}
+.plp-filter-head span{
+  font-size:.6rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;
+  color:#1C1C1C;
+}
+.plp-filter-clear{
+  font-size:.6rem;color:var(--gold2);cursor:pointer;
+  background:none;border:none;font-family:inherit;
+  letter-spacing:.05em;
+  transition:opacity .2s;
+}
+.plp-filter-clear:hover{opacity:.65}
+.filter-group{
+  margin-bottom:1.1rem;padding-bottom:.9rem;
+  border-bottom:1px solid rgba(28,28,28,.06);
+}
+.filter-group:last-child{border:none;margin-bottom:0;padding-bottom:0}
+.filter-group h4{
+  font-size:.54rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--gold2);margin-bottom:.65rem;
+}
+.filter-option{
+  display:flex;align-items:center;gap:.5rem;
+  margin-bottom:.38rem;cursor:pointer;
+}
+.filter-option input[type="checkbox"],
+.filter-option input[type="radio"]{
+  appearance:none;-webkit-appearance:none;
+  width:14px;height:14px;
+  border:1.5px solid rgba(28,28,28,.22);
+  border-radius:2px;cursor:pointer;
+  position:relative;flex-shrink:0;
+  background:#fff;
+  transition:border-color .2s,background .2s;
+}
+.filter-option input[type="radio"]{border-radius:50%}
+.filter-option input:checked{background:var(--gold2);border-color:var(--gold2)}
+.filter-option input[type="checkbox"]:checked::after{
+  content:'';position:absolute;
+  left:3px;top:0px;width:6px;height:9px;
+  border:1.5px solid #fff;border-top:none;border-left:none;
+  transform:rotate(40deg);
+}
+.filter-option input[type="radio"]:checked::after{
+  content:'';position:absolute;
+  left:3px;top:3px;width:6px;height:6px;
+  background:#fff;border-radius:50%;
+}
+.filter-option span{
+  font-size:.75rem;color:#555;cursor:pointer;line-height:1.2;
+}
+/* Product main area */
+.plp-main{display:flex;flex-direction:column;gap:1rem}
+.plp-count{
+  font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;
+  color:#7A7A7A;font-weight:500;
+}
+.plp-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:.9rem;
+}
+.plp-card{
+  background:#fff;border-radius:10px;overflow:hidden;
+  border:1px solid rgba(28,28,28,.06);
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease);
+}
+.plp-card:hover{transform:translateY(-4px);box-shadow:0 10px 32px rgba(0,0,0,.08)}
+.plp-card-img{
+  aspect-ratio:1/1;overflow:hidden;
+  background:#F0EDE7;
+}
+.plp-card-img img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .55s var(--ease);
+}
+.plp-card:hover .plp-card-img img{transform:scale(1.07)}
+.plp-card-info{padding:.85rem .95rem 1rem}
+.plp-card-meta{
+  font-size:.54rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--gold2);margin-bottom:.3rem;
+}
+.plp-card-name{
+  font-family:var(--serif);font-size:1.05rem;font-weight:400;
+  color:#1C1C1C;line-height:1.2;margin-bottom:.38rem;
+}
+.plp-card-desc{
+  font-size:.71rem;color:#7A7A7A;line-height:1.6;
+  margin-bottom:.7rem;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.plp-card-footer{
+  display:flex;align-items:center;justify-content:space-between;gap:.5rem;
+}
+.plp-card-price{font-size:.78rem;font-weight:600;color:#1C1C1C}
+.plp-card-btn{
+  font-size:.54rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold2);background:none;border:none;
+  font-family:inherit;cursor:pointer;padding:0;
+  transition:opacity .2s;
+}
+.plp-card-btn:hover{opacity:.65}
+/* Load more */
+.plp-more{display:flex;justify-content:center;padding:1.2rem 0 .5rem}
+.btn-load-more{
+  font-size:.63rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  color:#1C1C1C;background:none;
+  border:1px solid rgba(28,28,28,.22);
+  padding:.72rem 2.5rem;font-family:inherit;cursor:pointer;
+  transition:border-color .3s,color .3s;
+}
+.btn-load-more:hover{border-color:var(--gold2);color:var(--gold2)}
+/* Empty / no results */
+.plp-empty{
+  grid-column:1/-1;text-align:center;
+  padding:3rem 1rem;font-size:.85rem;color:#7A7A7A;
+}
+.plp-empty button{
+  color:var(--gold2);background:none;border:none;
+  font-family:inherit;font-size:.85rem;
+  cursor:pointer;text-decoration:underline;margin-left:.3rem;
+}
+/* Mobile PLP */
+@media(max-width:900px){
+  .plp{grid-template-columns:1fr;padding:1.2rem .8rem 3rem}
+  .plp-filters{position:static;max-height:none;border-radius:10px}
+  .plp-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:480px){
+  .plp-grid{grid-template-columns:repeat(2,1fr);gap:.6rem}
+  .plp-card-name{font-size:.95rem}
+  .plp-card-info{padding:.7rem .75rem .8rem}
+}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="ld-logo">Lumière<span>.</span></div>
+  <div class="ld-bar"><div class="ld-fill"></div></div>
+  <div class="ld-txt">Curating Your Experience</div>
+</div>
+
+<!-- MOBILE NAV -->
+<div class="mob-nav" id="mobNav">
+  <a href="#hero" onclick="closeMob()">Home</a>
+  <a href="#categories" onclick="closeMob()">Collection</a>
+  <a href="#about" onclick="closeMob()">Our Story</a>
+  <a href="#visit" onclick="closeMob()">Visit Us</a>
+  <a href="blog.html" onclick="closeMob()">Journal</a>
+  <div class="mob-nav-footer">London, EC1N · Since 1987</div>
+</div>
+
+<!-- DETAIL OVERLAY: RINGS -->
+<div class="detail" id="detail-rings">
+  <div class="detail-nav">
+    <div class="detail-back" onclick="closeDetail('rings')">
+      <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back to Collection
+    </div>
+    <div class="detail-close" onclick="closeDetail('rings')">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </div>
+  </div>
+  <div class="detail-hero">
+    <img src="https://images.unsplash.com/photo-1653785481935-9bdf2184228e?w=1600&h=700&fit=crop&q=85" alt="Fine rings"/>
+    <div class="detail-hero-overlay"></div>
+    <div class="detail-hero-text">
+      <div class="detail-hero-eyebrow">Our Collection</div>
+      <h2 class="detail-hero-title">Rings</h2>
+    </div>
+  </div>
+  <div class="plp">
+    <aside class="plp-filters" id="filters-rings"></aside>
+    <div class="plp-main">
+      <p class="plp-count" id="count-rings"></p>
+      <div class="plp-grid" id="grid-rings"></div>
+      <div class="plp-more" id="more-rings" style="display:none">
+        <button class="btn-load-more" onclick="loadMoreProducts('rings')">Load More</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL OVERLAY: NECKLACES -->
+<div class="detail" id="detail-necklaces">
+  <div class="detail-nav">
+    <div class="detail-back" onclick="closeDetail('necklaces')">
+      <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back to Collection
+    </div>
+    <div class="detail-close" onclick="closeDetail('necklaces')">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </div>
+  </div>
+  <div class="detail-hero">
+    <img src="https://images.unsplash.com/photo-1614146424692-384e5fbf4dd4?w=1600&h=700&fit=crop&q=85" alt="Fine necklaces"/>
+    <div class="detail-hero-overlay"></div>
+    <div class="detail-hero-text">
+      <div class="detail-hero-eyebrow">Our Collection</div>
+      <h2 class="detail-hero-title">Necklaces</h2>
+    </div>
+  </div>
+  <div class="plp">
+    <aside class="plp-filters" id="filters-necklaces"></aside>
+    <div class="plp-main">
+      <p class="plp-count" id="count-necklaces"></p>
+      <div class="plp-grid" id="grid-necklaces"></div>
+      <div class="plp-more" id="more-necklaces" style="display:none">
+        <button class="btn-load-more" onclick="loadMoreProducts('necklaces')">Load More</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL OVERLAY: EARRINGS -->
+<div class="detail" id="detail-earrings">
+  <div class="detail-nav">
+    <div class="detail-back" onclick="closeDetail('earrings')">
+      <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back to Collection
+    </div>
+    <div class="detail-close" onclick="closeDetail('earrings')">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </div>
+  </div>
+  <div class="detail-hero">
+    <img src="https://images.unsplash.com/photo-1723361656146-f201d215c49c?w=1600&h=700&fit=crop&q=85" alt="Fine earrings"/>
+    <div class="detail-hero-overlay"></div>
+    <div class="detail-hero-text">
+      <div class="detail-hero-eyebrow">Our Collection</div>
+      <h2 class="detail-hero-title">Earrings</h2>
+    </div>
+  </div>
+  <div class="plp">
+    <aside class="plp-filters" id="filters-earrings"></aside>
+    <div class="plp-main">
+      <p class="plp-count" id="count-earrings"></p>
+      <div class="plp-grid" id="grid-earrings"></div>
+      <div class="plp-more" id="more-earrings" style="display:none">
+        <button class="btn-load-more" onclick="loadMoreProducts('earrings')">Load More</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL OVERLAY: BRACELETS -->
+<div class="detail" id="detail-bracelets">
+  <div class="detail-nav">
+    <div class="detail-back" onclick="closeDetail('bracelets')">
+      <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back to Collection
+    </div>
+    <div class="detail-close" onclick="closeDetail('bracelets')">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </div>
+  </div>
+  <div class="detail-hero">
+    <img src="https://images.unsplash.com/photo-1723361656145-b481be3f9e05?w=1600&h=700&fit=crop&q=85" alt="Fine bracelets"/>
+    <div class="detail-hero-overlay"></div>
+    <div class="detail-hero-text">
+      <div class="detail-hero-eyebrow">Our Collection</div>
+      <h2 class="detail-hero-title">Bracelets</h2>
+    </div>
+  </div>
+  <div class="plp">
+    <aside class="plp-filters" id="filters-bracelets"></aside>
+    <div class="plp-main">
+      <p class="plp-count" id="count-bracelets"></p>
+      <div class="plp-grid" id="grid-bracelets"></div>
+      <div class="plp-more" id="more-bracelets" style="display:none">
+        <button class="btn-load-more" onclick="loadMoreProducts('bracelets')">Load More</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL OVERLAY: BESPOKE -->
+<div class="detail" id="detail-bespoke">
+  <div class="detail-nav">
+    <div class="detail-back" onclick="closeDetail('bespoke')">
+      <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back to Collection
+    </div>
+    <div class="detail-close" onclick="closeDetail('bespoke')">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </div>
+  </div>
+  <div class="detail-hero">
+    <img src="https://images.unsplash.com/photo-1726507367666-08c5f025bdf6?w=1600&h=700&fit=crop&q=85" alt="Bespoke jewellery"/>
+    <div class="detail-hero-overlay"></div>
+    <div class="detail-hero-text">
+      <div class="detail-hero-eyebrow">Made to Order</div>
+      <h2 class="detail-hero-title">Bespoke</h2>
+    </div>
+  </div>
+  <div class="plp">
+    <aside class="plp-filters" id="filters-bespoke"></aside>
+    <div class="plp-main">
+      <p class="plp-count" id="count-bespoke"></p>
+      <div class="plp-grid" id="grid-bespoke"></div>
+      <div class="plp-more" id="more-bespoke" style="display:none">
+        <button class="btn-load-more" onclick="loadMoreProducts('bespoke')">Load More</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ HEADER ═══════════════════════════════ -->
+<header id="nav">
+  <a href="#hero" class="nav-logo">Lumière<span>.</span></a>
+
+  <ul class="nav-links">
+    <!-- Jewellery with mega -->
+    <li class="nl-item">
+      <a href="#categories" class="nl-btn">
+        Jewellery
+        <svg class="nl-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
+      <div class="mega mega-jewellery">
+        <div class="mega-col">
+          <h4>By Type</h4>
+          <ul>
+            <li><a href="#" onclick="openDetail('rings');return false">Rings</a></li>
+            <li><a href="#" onclick="openDetail('necklaces');return false">Necklaces</a></li>
+            <li><a href="#" onclick="openDetail('earrings');return false">Earrings</a></li>
+            <li><a href="#" onclick="openDetail('bracelets');return false">Bracelets</a></li>
+            <li><a href="#" onclick="openDetail('bespoke');return false">Pendants</a></li>
+          </ul>
+        </div>
+        <div class="mega-col">
+          <h4>By Material</h4>
+          <ul>
+            <li><a href="#categories">18ct Gold</a></li>
+            <li><a href="#categories">White Gold</a></li>
+            <li><a href="#categories">Rose Gold</a></li>
+            <li><a href="#categories">Platinum</a></li>
+            <li><a href="#categories">Diamonds</a></li>
+            <li><a href="#categories">Gemstones</a></li>
+          </ul>
+        </div>
+        <div class="mega-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#visit">Book Appointment</a></li>
+            <li><a href="#" onclick="openDetail('bespoke');return false">Bespoke Design</a></li>
+            <li><a href="#visit">Valuation</a></li>
+            <li><a href="#visit">Restoration</a></li>
+          </ul>
+        </div>
+        <div class="mega-img">
+          <img src="https://images.unsplash.com/photo-1723361656146-f201d215c49c?w=350&h=280&fit=crop&q=80" alt="New arrivals" loading="lazy"/>
+          <div class="mega-img-label">
+            <small>New In</small>
+            <strong>Latest Arrivals</strong>
+          </div>
+        </div>
+      </div>
+    </li>
+
+    <!-- Bespoke with mega -->
+    <li class="nl-item">
+      <a href="#" onclick="openDetail('bespoke');return false" class="nl-btn">
+        Bespoke
+        <svg class="nl-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
+      <div class="mega mega-bespoke">
+        <div class="mega-col">
+          <h4>Our Process</h4>
+          <ul>
+            <li><a href="#visit">Initial Consultation</a></li>
+            <li><a href="#visit">Design & Sketching</a></li>
+            <li><a href="#visit">Stone Selection</a></li>
+            <li><a href="#visit">Handcrafting</a></li>
+            <li><a href="#visit">Final Delivery</a></li>
+          </ul>
+        </div>
+        <div class="mega-col">
+          <h4>Popular Requests</h4>
+          <ul>
+            <li><a href="#visit">Engagement Rings</a></li>
+            <li><a href="#visit">Wedding Bands</a></li>
+            <li><a href="#visit">Anniversary Gifts</a></li>
+            <li><a href="#visit">Family Heirlooms</a></li>
+          </ul>
+        </div>
+        <div class="mega-img">
+          <img src="https://images.unsplash.com/photo-1726507367666-08c5f025bdf6?w=300&h=260&fit=crop&q=80" alt="Bespoke" loading="lazy"/>
+          <div class="mega-img-label">
+            <small>Bespoke</small>
+            <strong>Your Vision</strong>
+          </div>
+        </div>
+      </div>
+    </li>
+
+    <li class="nl-item"><a href="#about" class="nl-btn">Our Story</a></li>
+    <li class="nl-item"><a href="#visit" class="nl-btn">Visit Us</a></li>
+    <li class="nl-item"><a href="blog.html" class="nl-btn">Journal</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <a href="#categories" class="nav-icon" aria-label="Search">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </a>
+    <a href="#visit" class="nav-icon" aria-label="Call us">
+      <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 013.07 9.81a19.79 19.79 0 01-3.07-8.7A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+    </a>
+    <div class="nav-store">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--gold2)" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+      Visit Us &nbsp;<strong>London, EC1N</strong>
+    </div>
+    <div class="hamburger" id="hamBtn">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ HERO ══════════════════════════════════ -->
+<section id="hero" class="snap" aria-label="Featured collections">
+
+  <div class="slide active" data-i="0">
+    <div class="slide-img"><img src="https://images.unsplash.com/photo-1613396968513-87720ee8420c?w=1800&h=1000&fit=crop&q=85" alt="Diamond jewellery" loading="eager"/></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <p class="slide-eye">New Collection 2025</p>
+      <h1 class="slide-title">Where Art<br>Meets <em>Jewellery</em></h1>
+      <p class="slide-desc">Handcrafted pieces of rare distinction, born from generations of mastery and a relentless pursuit of beauty.</p>
+      <a href="#categories" class="slide-btn">Explore Collection <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+  </div>
+
+  <div class="slide" data-i="1">
+    <div class="slide-img"><img src="https://images.unsplash.com/photo-1614146424692-384e5fbf4dd4?w=1800&h=1000&fit=crop&q=85" alt="Fine necklaces" loading="lazy"/></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <p class="slide-eye">Signature Necklaces</p>
+      <h1 class="slide-title">From Concept<br>to <em>Creation</em></h1>
+      <p class="slide-desc">Every necklace we craft tells a story. Begin yours with a private consultation at our London atelier.</p>
+      <a href="#" onclick="openDetail('bespoke');return false" class="slide-btn">Bespoke Design <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+  </div>
+
+  <div class="slide" data-i="2">
+    <div class="slide-img"><img src="https://images.unsplash.com/photo-1653785481935-9bdf2184228e?w=1800&h=1000&fit=crop&q=85" alt="Diamond rings" loading="lazy"/></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <p class="slide-eye">The Ring Edit</p>
+      <h1 class="slide-title">Crafted to<br>Last <em>Forever</em></h1>
+      <p class="slide-desc">Our rings are more than jewellery — they are heirlooms, milestones, and memories set in precious metal.</p>
+      <a href="#" onclick="openDetail('rings');return false" class="slide-btn">View Rings <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+  </div>
+
+  <!-- Counter -->
+  <div class="hero-counter" aria-hidden="true">
+    <span class="hc-num" id="hcNum">01</span>
+    <div class="hc-line"></div>
+    <span class="hc-total">03</span>
+  </div>
+
+  <!-- Controls -->
+  <div class="hero-controls">
+    <div class="hero-dot active" data-s="0"></div>
+    <div class="hero-dot" data-s="1"></div>
+    <div class="hero-dot" data-s="2"></div>
+    <button class="hero-arr" id="prevSlide" aria-label="Previous">
+      <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    </button>
+    <button class="hero-arr" id="nextSlide" aria-label="Next">
+      <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+
+  <!-- Gold strip at bottom -->
+  <div class="hero-strip" aria-hidden="true">
+    <div class="hero-strip-track">
+      <span class="hero-strip-item">Europe's Premier Fine Jewellers</span>
+      <span class="hero-strip-item">Handcrafted in Our London Atelier</span>
+      <span class="hero-strip-item">Ethically Sourced Gemstones</span>
+      <span class="hero-strip-item">Private Appointments Available</span>
+      <span class="hero-strip-item">Bespoke Commissions Welcome</span>
+      <span class="hero-strip-item">Europe's Premier Fine Jewellers</span>
+      <span class="hero-strip-item">Handcrafted in Our London Atelier</span>
+      <span class="hero-strip-item">Ethically Sourced Gemstones</span>
+      <span class="hero-strip-item">Private Appointments Available</span>
+      <span class="hero-strip-item">Bespoke Commissions Welcome</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CATEGORIES ════════════════════════════ -->
+<section id="categories" class="snap" aria-labelledby="cat-title">
+  <div class="cat-header rv">
+    <div class="cat-header-left">
+      <p class="cat-eyebrow">Our Jewellery</p>
+      <h2 class="cat-title" id="cat-title">Shop by Category</h2>
+    </div>
+    <p class="cat-sub">Click any category to explore the collection</p>
+  </div>
+
+  <div class="cat-grid">
+    <!-- Rings — tall (spans 2 rows) -->
+    <div class="cat-card tall rv d1" onclick="openDetail('rings')" role="button" tabindex="0" aria-label="View Rings collection">
+      <div class="cat-img"><img src="https://images.unsplash.com/photo-1653785481935-9bdf2184228e?w=600&h=1000&fit=crop&q=80" alt="Rings collection" loading="lazy"/></div>
+      <div class="cat-ov"></div>
+      <div class="cat-content">
+        <p class="cat-clabel">Collection</p>
+        <h3 class="cat-ctitle">Rings</h3>
+        <span class="cat-clink">Explore <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </div>
+    </div>
+
+    <!-- Necklaces -->
+    <div class="cat-card rv d2" onclick="openDetail('necklaces')" role="button" tabindex="0" aria-label="View Necklaces collection">
+      <div class="cat-img"><img src="https://images.unsplash.com/photo-1614146424692-384e5fbf4dd4?w=600&h=500&fit=crop&q=80" alt="Necklaces" loading="lazy"/></div>
+      <div class="cat-ov"></div>
+      <div class="cat-content">
+        <p class="cat-clabel">Collection</p>
+        <h3 class="cat-ctitle">Necklaces</h3>
+        <span class="cat-clink">Explore <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </div>
+    </div>
+
+    <!-- Bracelets -->
+    <div class="cat-card rv d2" onclick="openDetail('bracelets')" role="button" tabindex="0" aria-label="View Bracelets collection">
+      <div class="cat-img"><img src="https://images.unsplash.com/photo-1723361656145-b481be3f9e05?w=600&h=500&fit=crop&q=80" alt="Bracelets" loading="lazy"/></div>
+      <div class="cat-ov"></div>
+      <div class="cat-content">
+        <p class="cat-clabel">Collection</p>
+        <h3 class="cat-ctitle">Bracelets</h3>
+        <span class="cat-clink">Explore <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </div>
+    </div>
+
+    <!-- Earrings -->
+    <div class="cat-card rv d3" onclick="openDetail('earrings')" role="button" tabindex="0" aria-label="View Earrings collection">
+      <div class="cat-img"><img src="https://images.unsplash.com/photo-1723361656146-f201d215c49c?w=600&h=500&fit=crop&q=80" alt="Earrings" loading="lazy"/></div>
+      <div class="cat-ov"></div>
+      <div class="cat-content">
+        <p class="cat-clabel">Collection</p>
+        <h3 class="cat-ctitle">Earrings</h3>
+        <span class="cat-clink">Explore <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </div>
+    </div>
+
+    <!-- Bespoke -->
+    <div class="cat-card rv d3" onclick="openDetail('bespoke')" role="button" tabindex="0" aria-label="View Bespoke collection">
+      <div class="cat-img"><img src="https://images.unsplash.com/photo-1726507367666-08c5f025bdf6?w=600&h=500&fit=crop&q=80" alt="Bespoke jewellery" loading="lazy"/></div>
+      <div class="cat-ov"></div>
+      <div class="cat-content">
+        <p class="cat-clabel">Made to Order</p>
+        <h3 class="cat-ctitle">Bespoke</h3>
+        <span class="cat-clink">Begin Journey <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gold ribbon — lives inside the snap so it shows at the bottom of the categories viewport -->
+  <div class="ribbon" aria-hidden="true">
+  <div class="ribbon-track">
+    <span class="ribbon-item">Timeless Elegance <span class="ribbon-sep">✦</span></span>
+    <span class="ribbon-item">Master Craftsmanship <span class="ribbon-sep">✦</span></span>
+    <span class="ribbon-item">Ethical Luxury <span class="ribbon-sep">✦</span></span>
+    <span class="ribbon-item">London Atelier <span class="ribbon-sep">✦</span></span>
+    <span class="ribbon-item">Since 1987 <span class="ribbon-sep">✦</span></span>
+    <span class="ribbon-item">Timeless Elegance <span class="ribbon-sep">✦</span></span>
+    <span class="ribbon-item">Master Craftsmanship <span class="ribbon-sep">✦</span></span>
+    <span class="ribbon-item">Ethical Luxury <span class="ribbon-sep">✦</span></span>
+    <span class="ribbon-item">London Atelier <span class="ribbon-sep">✦</span></span>
+    <span class="ribbon-item">Since 1987 <span class="ribbon-sep">✦</span></span>
+  </div>
+  </div><!-- /ribbon -->
+
+</section><!-- /categories -->
+
+<!-- ═══ ABOUT ══════════════════════════════════ -->
+<section id="about" class="snap" aria-labelledby="about-title">
+  <div class="about-img rv-l">
+    <img src="https://images.unsplash.com/photo-1653785481935-9bdf2184228e?w=900&h=1100&fit=crop&q=85" alt="Jewellery craftsmanship" loading="lazy"/>
+    <div class="about-img-ov"></div>
+    <div class="about-stat-chip">
+      <div><span class="ast-n" data-count="37">0</span><span class="ast-l">Years of Craft</span></div>
+      <div><span class="ast-n" data-count="5000">0</span><span class="ast-l">Pieces Created</span></div>
+      <div><span class="ast-n" data-count="3">0</span><span class="ast-l">Generations</span></div>
+    </div>
+  </div>
+
+  <div class="about-text rv-r">
+    <p class="cat-eyebrow">Our Story</p>
+    <h2 style="font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.8rem);font-weight:300;margin-top:.5rem;line-height:1.1" id="about-title">Crafted With Purpose,<br>Worn With Pride</h2>
+    <div style="width:44px;height:1px;background:linear-gradient(90deg,var(--gold2),transparent);margin:1.2rem 0"></div>
+
+    <blockquote>"We don't simply make jewellery. We create heirlooms."</blockquote>
+
+    <p>Founded in 1987 by master goldsmith [Founder Name], Lumière was born from a singular conviction: that truly exceptional jewellery must honour both the beauty of its materials and the story of the person who wears it.</p>
+    <p>Three generations later, every piece is still crafted by hand — set stone by stone, polished by eye, held to a standard no machine can replicate.</p>
+
+    <div class="vals">
+      <div class="val"><span class="val-n">Craftsmanship</span><span class="val-d">Hand-finished in our London atelier</span></div>
+      <div class="val"><span class="val-n">Provenance</span><span class="val-d">Ethically sourced, fully certified</span></div>
+      <div class="val"><span class="val-n">Heritage</span><span class="val-d">Three decades of mastery</span></div>
+    </div>
+
+    <div style="display:flex;gap:.8rem;margin-top:1.2rem;flex-wrap:wrap">
+      <a href="#visit" class="btn btn-gold">Visit Our Store <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a href="#categories" class="btn btn-wh">View Collection</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SHOWCASE ═══════════════════════════════ -->
+<section id="showcase" class="snap" aria-labelledby="sc-title">
+  <div class="sc-header rv">
+    <div class="cat-header-left">
+      <p class="cat-eyebrow">Featured Pieces</p>
+      <h2 class="cat-title" id="sc-title">Selected Works</h2>
+    </div>
+    <a href="#categories" class="btn btn-wh" style="padding:.6rem 1.4rem">View All</a>
+  </div>
+  <div class="sc-grid">
+    <div class="sc-card rv d1" onclick="openDetail('necklaces')" role="button" tabindex="0" aria-label="The Aurora Pendant">
+      <img src="https://images.unsplash.com/photo-1614146424692-384e5fbf4dd4?w=700&h=900&fit=crop&q=80" alt="Aurora Pendant" loading="lazy"/>
+      <div class="sc-info">
+        <span class="sc-tag">Diamond</span>
+        <h3 class="sc-name">The Aurora Pendant</h3>
+        <div class="sc-enq">Enquire <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+    </div>
+    <div class="sc-card rv d2" onclick="openDetail('rings')" role="button" tabindex="0" aria-label="Celestia Band">
+      <img src="https://images.unsplash.com/photo-1653785481935-9bdf2184228e?w=700&h=900&fit=crop&q=80" alt="Celestia Band" loading="lazy"/>
+      <div class="sc-info">
+        <span class="sc-tag">18ct Gold</span>
+        <h3 class="sc-name">Celestia Band</h3>
+        <div class="sc-enq">Enquire <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+    </div>
+    <div class="sc-card rv d3" onclick="openDetail('earrings')" role="button" tabindex="0" aria-label="Soleil Earrings">
+      <img src="https://images.unsplash.com/photo-1723361656146-f201d215c49c?w=700&h=900&fit=crop&q=80" alt="Soleil Earrings" loading="lazy"/>
+      <div class="sc-info">
+        <span class="sc-tag">Sapphire</span>
+        <h3 class="sc-name">Soleil Earrings</h3>
+        <div class="sc-enq">Enquire <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ VISIT ══════════════════════════════════ -->
+<section id="visit" class="snap" aria-labelledby="visit-title">
+  <div class="visit-img rv-l">
+    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&h=900&fit=crop&q=85" alt="Lumière atelier" loading="lazy"/>
+  </div>
+  <div class="visit-content rv-r">
+    <p class="cat-eyebrow">Find Us</p>
+    <h2 style="font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.8rem);font-weight:300;margin-top:.5rem;line-height:1.1" id="visit-title">Visit the Atelier</h2>
+    <div style="width:44px;height:1px;background:linear-gradient(90deg,var(--gold2),transparent);margin:1rem 0"></div>
+    <p style="font-size:.82rem;color:var(--grey);line-height:1.8;max-width:420px">Experience our collection in person. Walk in or book a private viewing — our team is here to guide you.</p>
+
+    <table class="hours-tbl" aria-label="Store hours">
+      <tr><td>Monday – Friday</td><td>10:00 am – 6:00 pm</td></tr>
+      <tr><td>Saturday</td><td>11:00 am – 4:00 pm</td></tr>
+      <tr class="cl"><td>Sunday</td><td>Closed</td></tr>
+    </table>
+
+    <div class="c-rows">
+      <div class="c-row">
+        <div class="c-ico"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div class="c-info"><small>Address</small><span>1 Jewellers Row, London, EC1N 0XX</span></div>
+      </div>
+      <div class="c-row">
+        <div class="c-ico"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 013.07 9.81a19.79 19.79 0 01-3.07-8.7A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+        <div class="c-info"><small>Telephone</small><a href="tel:+44000000000">+44 (0) 000 000 0000</a></div>
+      </div>
+      <div class="c-row">
+        <div class="c-ico"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <div class="c-info"><small>Email</small><a href="mailto:hello@lumierejewellers.com">hello@lumierejewellers.com</a></div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:.8rem;flex-wrap:wrap">
+      <a href="mailto:hello@lumierejewellers.com" class="btn btn-gold">Book Appointment <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a href="https://maps.google.com" target="_blank" rel="noopener" class="btn btn-wh">Get Directions</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═════════════════════════════════ -->
+<footer>
+  <div class="ft-grid">
+    <div class="ft-brand">
+      <a href="#hero" class="nav-logo">Lumière<span>.</span></a>
+      <p>Purveyors of exceptional fine jewellery, handcrafted in our London atelier. Each piece created to be cherished for a lifetime.</p>
+      <div class="ft-social">
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+        <a href="#" aria-label="Pinterest"><svg viewBox="0 0 24 24"><path d="M8 12a4 4 0 108 0 4 4 0 00-8 0"/></svg></a>
+      </div>
+    </div>
+    <div class="ft-col">
+      <h4>Collections</h4>
+      <ul>
+        <li><a href="#" onclick="openDetail('rings');return false">Rings</a></li>
+        <li><a href="#" onclick="openDetail('necklaces');return false">Necklaces</a></li>
+        <li><a href="#" onclick="openDetail('earrings');return false">Earrings</a></li>
+        <li><a href="#" onclick="openDetail('bracelets');return false">Bracelets</a></li>
+        <li><a href="#" onclick="openDetail('bespoke');return false">Bespoke</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h4>The Atelier</h4>
+      <ul>
+        <li><a href="#about">Our Story</a></li>
+        <li><a href="#" onclick="openDetail('bespoke');return false">Bespoke Design</a></li>
+        <li><a href="#visit">Visit Us</a></li>
+        <li><a href="#visit">Book Appointment</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h4>Information</h4>
+      <ul>
+        <li><a href="blog.html">Journal</a></li>
+        <li><a href="#">Care Guide</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms & Conditions</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <p>© 2026 Lumière Jewellers. All rights reserved.</p>
+    <p>Crafted with care in London, United Kingdom</p>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════
+     SCRIPTS
+═══════════════════════════════════════ -->
+<script>
+/* ── LOADER ── */
+window.addEventListener('load',()=>{
+  setTimeout(()=>document.getElementById('loader').classList.add('out'),1800);
+});
+
+/* ── NAV SCROLL ── */
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('solid',window.scrollY>40);
+},{passive:true});
+
+/* ── MOBILE NAV ── */
+const hamBtn=document.getElementById('hamBtn');
+const mobNav=document.getElementById('mobNav');
+hamBtn.addEventListener('click',()=>{
+  hamBtn.classList.toggle('open');
+  mobNav.classList.toggle('open');
+});
+function closeMob(){
+  hamBtn.classList.remove('open');
+  mobNav.classList.remove('open');
+}
+
+/* ── DETAIL OVERLAYS + PRODUCT LISTING ── */
+const plpState={};
+const PLP_PAGE=4;
+
+function openDetail(id){
+  const el=document.getElementById('detail-'+id);
+  if(!el)return;
+  el.classList.add('open');
+  el.scrollTop=0;
+  document.body.style.overflow='hidden';
+  if(!plpState[id]){
+    plpState[id]={page:1,filters:{material:[],stone:[],price:''}};
+    buildFilters(id);
+  }
+  renderProducts(id);
+}
+function closeDetail(id){
+  const el=document.getElementById('detail-'+id);
+  if(!el)return;
+  el.classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function buildFilters(id){
+  const prods=(window.PRODUCTS&&window.PRODUCTS[id])||[];
+  const metals=[...new Set(prods.map(p=>p.material))].sort();
+  const stones=[...new Set(prods.map(p=>p.stone))].filter(s=>s!=='None'&&s!=='Various').sort();
+  const sb=document.getElementById('filters-'+id);
+  if(!sb)return;
+  sb.innerHTML=`
+    <div class="plp-filter-head">
+      <span>Filters</span>
+      <button class="plp-filter-clear" onclick="clearFilters('${id}')">Clear all</button>
+    </div>
+    <div class="filter-group">
+      <h4>Metal</h4>
+      ${metals.map(m=>`<label class="filter-option"><input type="checkbox" value="${m}" data-filter="material" data-cat="${id}" onchange="applyFilter('${id}')"><span>${m}</span></label>`).join('')}
+    </div>
+    ${stones.length?`<div class="filter-group"><h4>Stone</h4>${stones.map(s=>`<label class="filter-option"><input type="checkbox" value="${s}" data-filter="stone" data-cat="${id}" onchange="applyFilter('${id}')"><span>${s}</span></label>`).join('')}</div>`:''}
+    <div class="filter-group">
+      <h4>Price</h4>
+      <label class="filter-option"><input type="radio" name="price-${id}" value="" checked onchange="applyFilter('${id}')"><span>Any Price</span></label>
+      <label class="filter-option"><input type="radio" name="price-${id}" value="under500" onchange="applyFilter('${id}')"><span>Under £500</span></label>
+      <label class="filter-option"><input type="radio" name="price-${id}" value="500to1000" onchange="applyFilter('${id}')"><span>£500 – £1,000</span></label>
+      <label class="filter-option"><input type="radio" name="price-${id}" value="over1000" onchange="applyFilter('${id}')"><span>Over £1,000</span></label>
+    </div>`;
+}
+
+function applyFilter(id){
+  if(!plpState[id])return;
+  plpState[id].filters.material=[...document.querySelectorAll(`[data-filter="material"][data-cat="${id}"]:checked`)].map(el=>el.value);
+  plpState[id].filters.stone=[...document.querySelectorAll(`[data-filter="stone"][data-cat="${id}"]:checked`)].map(el=>el.value);
+  const pr=document.querySelector(`[name="price-${id}"]:checked`);
+  plpState[id].filters.price=pr?pr.value:'';
+  plpState[id].page=1;
+  renderProducts(id);
+}
+function clearFilters(id){
+  if(!plpState[id])return;
+  document.querySelectorAll(`[data-cat="${id}"][data-filter]`).forEach(el=>{el.checked=false});
+  const any=document.querySelector(`[name="price-${id}"][value=""]`);
+  if(any)any.checked=true;
+  plpState[id].filters={material:[],stone:[],price:''};
+  plpState[id].page=1;
+  renderProducts(id);
+}
+function getFiltered(id){
+  const all=(window.PRODUCTS&&window.PRODUCTS[id])||[];
+  const f=(plpState[id]||{}).filters||{};
+  return all.filter(p=>{
+    if(f.material&&f.material.length&&!f.material.includes(p.material))return false;
+    if(f.stone&&f.stone.length&&!f.stone.includes(p.stone))return false;
+    if(f.price){
+      const n=parseInt((p.price||'').replace(/[^0-9]/g,''))||0;
+      if(f.price==='under500'&&n>=500)return false;
+      if(f.price==='500to1000'&&(n<500||n>1000))return false;
+      if(f.price==='over1000'&&n<=1000)return false;
+    }
+    return true;
+  });
+}
+function renderProducts(id){
+  const filtered=getFiltered(id);
+  const page=(plpState[id]||{}).page||1;
+  const visible=filtered.slice(0,page*PLP_PAGE);
+  const grid=document.getElementById('grid-'+id);
+  const countEl=document.getElementById('count-'+id);
+  const moreEl=document.getElementById('more-'+id);
+  if(countEl)countEl.textContent=filtered.length+' piece'+(filtered.length!==1?'s':'');
+  if(!grid)return;
+  if(!visible.length){
+    grid.innerHTML=`<div class="plp-empty">No pieces match your selection. <button onclick="clearFilters('${id}')">Clear filters</button></div>`;
+    if(moreEl)moreEl.style.display='none';
+    return;
+  }
+  grid.innerHTML=visible.map(p=>`
+    <div class="plp-card">
+      <div class="plp-card-img"><img src="${p.image}" alt="${p.name}" loading="lazy"/></div>
+      <div class="plp-card-info">
+        <div class="plp-card-meta">${p.material}${p.stone&&p.stone!=='None'&&p.stone!=='Various'?' · '+p.stone:''}</div>
+        <h3 class="plp-card-name">${p.name}</h3>
+        <p class="plp-card-desc">${p.desc}</p>
+        <div class="plp-card-footer">
+          <span class="plp-card-price">${p.price}</span>
+          <button class="plp-card-btn" onclick="enquireProduct('${id}')">Enquire →</button>
+        </div>
+      </div>
+    </div>`).join('');
+  if(moreEl)moreEl.style.display=visible.length<filtered.length?'flex':'none';
+}
+function loadMoreProducts(id){
+  if(!plpState[id])return;
+  plpState[id].page++;
+  renderProducts(id);
+}
+function enquireProduct(catId){
+  closeDetail(catId);
+  setTimeout(()=>{
+    const v=document.querySelector('#visit');
+    if(v)v.scrollIntoView({behavior:'smooth'});
+  },450);
+}
+
+// Close with Escape
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    document.querySelectorAll('.detail.open').forEach(d=>{
+      closeDetail(d.id.replace('detail-',''));
+    });
+    closeMob();
+  }
+});
+// Keyboard accessibility for cat-cards
+document.querySelectorAll('.cat-card,.sc-card').forEach(el=>{
+  el.addEventListener('keydown',e=>{
+    if(e.key==='Enter'||e.key===' '){e.preventDefault();el.click()}
+  });
+});
+
+/* ── HERO SLIDER ── */
+const slides=document.querySelectorAll('.slide');
+const dots=document.querySelectorAll('.hero-dot');
+const hcNum=document.getElementById('hcNum');
+let cur=0,timer;
+
+function goSlide(n){
+  slides[cur].classList.remove('active');
+  dots[cur].classList.remove('active');
+  cur=(n+slides.length)%slides.length;
+  slides[cur].classList.add('active');
+  dots[cur].classList.add('active');
+  hcNum.textContent=String(cur+1).padStart(2,'0');
+}
+function startTimer(){clearInterval(timer);timer=setInterval(()=>goSlide(cur+1),6000)}
+document.getElementById('nextSlide').addEventListener('click',()=>{goSlide(cur+1);startTimer()});
+document.getElementById('prevSlide').addEventListener('click',()=>{goSlide(cur-1);startTimer()});
+dots.forEach((d,i)=>d.addEventListener('click',()=>{goSlide(i);startTimer()}));
+startTimer();
+
+/* ── SCROLL REVEAL ── */
+const rvEls=document.querySelectorAll('.rv,.rv-l,.rv-r');
+const rvObs=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('in'),i*60);
+      rvObs.unobserve(e.target);
+    }
+  });
+},{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+rvEls.forEach(el=>rvObs.observe(el));
+
+/* ── ANIMATED COUNTERS ── */
+const cntObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    const el=e.target;
+    const target=+el.dataset.count;
+    let s=null;
+    const step=ts=>{
+      if(!s)s=ts;
+      const p=Math.min((ts-s)/1600,1);
+      const ease=1-Math.pow(1-p,3);
+      el.textContent=Math.floor(ease*target)+(p>=1&&target>=100?'+':'');
+      if(p<1)requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+    cntObs.unobserve(el);
+  });
+},{threshold:.3});
+document.querySelectorAll('[data-count]').forEach(el=>cntObs.observe(el));
+
+/* ── MEGA MENU SMART POSITIONING ──
+   Keeps the dropdown inside the viewport regardless of which
+   nav item triggered it. Runs on mouseenter + window resize. */
+(function(){
+  function positionMega(item){
+    const mega=item.querySelector('.mega');
+    if(!mega)return;
+    const itemRect=item.getBoundingClientRect();
+    // Read min-width from CSS so we don't need the element rendered
+    const mw=parseFloat(getComputedStyle(mega).minWidth)||680;
+    let left=itemRect.left;
+    // Clamp: keep 16px margin from either viewport edge
+    left=Math.max(16,Math.min(left,window.innerWidth-mw-16));
+    mega.style.left=left+'px';
+  }
+  document.querySelectorAll('.nl-item').forEach(item=>{
+    if(!item.querySelector('.mega'))return;
+    item.addEventListener('mouseenter',()=>positionMega(item));
+    window.addEventListener('resize',()=>positionMega(item),{passive:true});
+  });
+})();
+
+/* ── SMOOTH ANCHOR ── */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=a.getAttribute('href');
+    if(t==='#')return;
+    const el=document.querySelector(t);
+    if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth',block:'start'})}
+  });
+});
+</script>
+</body>
+</html>
